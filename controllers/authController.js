@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { User } = require("../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -10,7 +11,7 @@ module.exports = {
             const exist = await User.findOne({ where: { email } });
             if (exist) return res.status(400).json({ message: "Email already exists" });
 
-            const user = await User.create({ name, email, password });
+            const user = await User.create({ name, email, password, role: 'user' });
 
             res.json({
                 message: "Registration success",
