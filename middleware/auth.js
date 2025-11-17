@@ -16,14 +16,14 @@ module.exports = function(requiredRole = 'user') {
             ? requiredRole
             : [requiredRole];
 
-            if (!rolesAllowed.includes(decoded.role)) {
-            return res.status(403).json({ message: "Access forbidden: insufficient role" });
+            if (!rolesAllowed.includes(decoded.role) && decoded.role !== 'admin') {
+                return res.status(403).json({ message: "Access forbidden: insufficient role" });
             }
         }
 
         next();
         } catch (error) {
-        res.status(401).json({ message: "Invalid token" });
+            res.status(401).json({ message: "Invalid token" });
         }
     };
 };

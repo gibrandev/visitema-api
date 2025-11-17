@@ -13,5 +13,5 @@ app.use("/auth", require("./routes/auth"));
 app.use("/users", require("./routes/user"));
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Visinema app listening on port ${port}`)
 })
